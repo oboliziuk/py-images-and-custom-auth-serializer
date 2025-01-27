@@ -40,6 +40,7 @@ class Actor(models.Model):
 
 
 def create_custom_path(instance, filename):
+    title = getattr(instance, "title", "default-title")
     _, extension = os.path.splitext(filename)
     return os.path.join(
         "uploads/images/",
