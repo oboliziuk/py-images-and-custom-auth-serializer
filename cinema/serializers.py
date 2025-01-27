@@ -107,8 +107,12 @@ class MovieSessionListSerializer(MovieSessionSerializer):
     def get_movie_image(self, obj):
         request = self.context.get("request")
         if request:
-            media_url = settings.MEDIA_URL if settings.MEDIA_URL.endswith('/') else settings.MEDIA_URL + '/'
-            return request.build_absolute_uri(f"{media_url}{obj.movie.image.url.lstrip('/')}")
+            media_url = settings.MEDIA_URL \
+                if settings.MEDIA_URL.endswith("/") \
+                else settings.MEDIA_URL + "/"
+            return request.build_absolute_uri(
+                f"{media_url}{obj.movie.image.url.lstrip('/')}"
+            )
         return f"{settings.MEDIA_URL}{obj.movie.image.url.lstrip('/')}"
 
 
